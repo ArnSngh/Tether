@@ -1,0 +1,7 @@
+node_modules
+.env
+frontend/node_modules
+frontend/build
+Backend/.env
+*.zip
+mern-chat-app-master
