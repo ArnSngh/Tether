@@ -3,8 +3,8 @@ const {
   registerUser,
   authUser,
   allUsers,
-} = require("../controllers/userControllers");
-const { protect } = require("../middleware/authMiddleware");
+} = require("../controllers/userControllers.js");
+const { protect } = require("../middleware/authMiddleware.js");
 
 const router = express.Router();
 

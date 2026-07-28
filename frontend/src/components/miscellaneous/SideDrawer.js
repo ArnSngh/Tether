@@ -23,14 +23,14 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
-import ChatLoading from "../ChatLoading";
+import ChatLoading from "../ChatLoading.js";
 import { Spinner } from "@chakra-ui/spinner";
-import ProfileModal from "./ProfileModal";
+import ProfileModal from "./ProfileModal.js";
 import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
-import { getSender } from "../../config/ChatLogics";
-import UserListItem from "../userAvatar/UserListItem";
-import { ChatState } from "../../Context/ChatProvider";
+import { getSender } from "../../config/ChatLogics.js";
+import UserListItem from "../userAvatar/UserListItem.js";
+import { ChatState } from "../../Context/ChatProvider.js";
 
 function SideDrawer() {
   const [search, setSearch] = useState("");

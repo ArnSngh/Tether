@@ -1,0 +1,1 @@
+cd /d "c:\Users\Aryan Singh\OneDrive\Desktop\MERN chat app\frontend" && npm.cmd run build

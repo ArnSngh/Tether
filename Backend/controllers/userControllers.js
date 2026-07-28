@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../models/userModel");
-const generateToken = require("../config/generateToken");
+const User = require("../models/userModel.js");
+const generateToken = require("../config/generateToken.js");
 
 //@description     Get or Search all users
 //@route           GET /api/user?search=
