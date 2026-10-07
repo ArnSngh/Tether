@@ -136,7 +136,7 @@ Copy `.env.example` to `.env` in the project root, then set values for your envi
 | Variable     | Purpose                                                                           | Example                              |
 | ------------ | --------------------------------------------------------------------------------- | ------------------------------------ |
 | `PORT`       | Backend HTTP and Socket.IO port                                                   | `5000`                               |
-| `MONGO_URI`  | MongoDB connection string                                                         | `mongodb://127.0.0.1:27017/chat-app` |
+| `MONGO_URI`  | MongoDB connection string                                                         | `mongodb://xx-xx-xx-xx-xx/app` |
 | `JWT_SECRET` | Secret used to sign and verify JWTs                                               | Use a long, private random value     |
 | `CLIENT_URL` | Allowed frontend origin(s) for Socket.IO; multiple origins can be comma-separated | `http://localhost:3000`              |
 | `NODE_ENV`   | Set to `production` to serve the built frontend                                   | `development`                        |
