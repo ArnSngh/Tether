@@ -2,7 +2,7 @@
 
 ## Project overview
 
-Talk-A-Tive is a MERN chat application for direct and group conversations. It combines a React chat interface with an Express and Socket.IO server, and stores accounts, conversations, and messages in MongoDB.
+Tether is a MERN chat application for direct and group conversations. It combines a React chat interface with an Express and Socket.IO server, and stores accounts, conversations, and messages in MongoDB.
 
 ## Features
 
@@ -16,13 +16,13 @@ Talk-A-Tive is a MERN chat application for direct and group conversations. It co
 
 ## Tech stack
 
-| Area | Technologies |
-| --- | --- |
-| Frontend | React 17, Create React App, Chakra UI, Axios |
-| Backend | Node.js, Express |
-| Database | MongoDB, Mongoose |
-| Authentication | JSON Web Tokens (JWT), bcryptjs |
-| Real-time messaging | Socket.IO server and client |
+| Area                | Technologies                                 |
+| ------------------- | -------------------------------------------- |
+| Frontend            | React 17, Create React App, Chakra UI, Axios |
+| Backend             | Node.js, Express                             |
+| Database            | MongoDB, Mongoose                            |
+| Authentication      | JSON Web Tokens (JWT), bcryptjs              |
+| Real-time messaging | Socket.IO server and client                  |
 
 ## Architecture
 
@@ -81,34 +81,34 @@ The application screenshots below use fictional sample users and messages render
 
 ### Sign in and registration
 
-| Login | Sign up |
-| --- | --- |
-| ![Talk-A-Tive login screen](screenshots/login.png) | ![Talk-A-Tive sign-up screen](screenshots/signup.png) |
+| Login                                         | Sign up                                          |
+| --------------------------------------------- | ------------------------------------------------ |
+| ![Tether login screen](screenshots/login.png) | ![Tether sign-up screen](screenshots/signup.png) |
 
 ### Inbox and messaging
 
-| Chat dashboard | One-to-one conversation |
-| --- | --- |
+| Chat dashboard                                                                                      | One-to-one conversation                                                            |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | ![Inbox with direct and group chats, unread counts, and navigation](screenshots/chat-dashboard.png) | ![Direct chat with message history and read receipts](screenshots/direct-chat.png) |
 
 ### Group conversations
 
-| Group conversation | Create a group |
-| --- | --- |
+| Group conversation                                                           | Create a group                                    |
+| ---------------------------------------------------------------------------- | ------------------------------------------------- |
 | ![Live group conversation with multiple members](screenshots/group-chat.png) | ![Create a group chat](screenshots/new-group.png) |
 
-| Manage group members |
-| --- |
+| Manage group members                                                                                   |
+| ------------------------------------------------------------------------------------------------------ |
 | ![Group settings for renaming the conversation and managing members](screenshots/group-management.png) |
 
 ### Search and profile
 
-| Find people | View profile |
-| --- | --- |
+| Find people                                                   | View profile                                |
+| ------------------------------------------------------------- | ------------------------------------------- |
 | ![Search users by name or email](screenshots/user-search.png) | ![Profile details](screenshots/profile.png) |
 
-| Edit profile | Guest message limit |
-| --- | --- |
+| Edit profile                                                                | Guest message limit                                                                                |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | ![Edit a profile photo and about information](screenshots/profile-edit.png) | ![Guest conversation after all three messages have been used](screenshots/guest-message-limit.png) |
 
 A public demo URL is not configured in this repository. Follow the steps below to run the app locally.
@@ -133,13 +133,13 @@ npm install --prefix frontend --legacy-peer-deps
 
 Copy `.env.example` to `.env` in the project root, then set values for your environment:
 
-| Variable | Purpose | Example |
-| --- | --- | --- |
-| `PORT` | Backend HTTP and Socket.IO port | `5000` |
-| `MONGO_URI` | MongoDB connection string | `mongodb://127.0.0.1:27017/chat-app` |
-| `JWT_SECRET` | Secret used to sign and verify JWTs | Use a long, private random value |
-| `CLIENT_URL` | Allowed frontend origin(s) for Socket.IO; multiple origins can be comma-separated | `http://localhost:3000` |
-| `NODE_ENV` | Set to `production` to serve the built frontend | `development` |
+| Variable     | Purpose                                                                           | Example                              |
+| ------------ | --------------------------------------------------------------------------------- | ------------------------------------ |
+| `PORT`       | Backend HTTP and Socket.IO port                                                   | `5000`                               |
+| `MONGO_URI`  | MongoDB connection string                                                         | `mongodb://127.0.0.1:27017/chat-app` |
+| `JWT_SECRET` | Secret used to sign and verify JWTs                                               | Use a long, private random value     |
+| `CLIENT_URL` | Allowed frontend origin(s) for Socket.IO; multiple origins can be comma-separated | `http://localhost:3000`              |
+| `NODE_ENV`   | Set to `production` to serve the built frontend                                   | `development`                        |
 
 For a frontend and backend hosted on different origins, set `REACT_APP_SOCKET_URL` when building the frontend to the backend's Socket.IO origin (for example, `https://api.example.com`). This Create React App variable is embedded at build time. If it is not set, the client uses its built-in endpoint selection.
 
@@ -181,23 +181,23 @@ Keep secrets in the deployment platform's environment settings, not in source co
 
 All endpoints are relative to `/api`. Except registration and login, the routes below require `Authorization: Bearer <token>`.
 
-| Method | Endpoint | Description |
-| --- | --- | --- |
-| `POST` | `/user` | Register an account |
-| `POST` | `/user/login` | Sign in |
-| `GET` | `/user?search=<term>` | Search users |
-| `PUT` | `/user/profile` | Update the signed-in user's profile |
-| `GET` | `/chat` | List the user's visible chats and unread counts |
-| `POST` | `/chat` | Find or create a direct chat |
-| `POST` | `/chat/group` | Create a group chat |
-| `PUT` | `/chat/rename` | Rename a group chat |
-| `PUT` | `/chat/groupadd` | Add a user to a group |
-| `PUT` | `/chat/groupremove` | Remove a user from a group |
-| `DELETE` | `/chat/:chatId` | Hide a chat from the signed-in user's list |
-| `GET` | `/message/:chatId` | Load messages for a chat |
-| `POST` | `/message` | Send a message |
-| `PATCH` | `/message/:chatId/read` | Mark received messages as read |
-| `DELETE` | `/message/:messageId` | Delete the signed-in user's message |
+| Method   | Endpoint                | Description                                     |
+| -------- | ----------------------- | ----------------------------------------------- |
+| `POST`   | `/user`                 | Register an account                             |
+| `POST`   | `/user/login`           | Sign in                                         |
+| `GET`    | `/user?search=<term>`   | Search users                                    |
+| `PUT`    | `/user/profile`         | Update the signed-in user's profile             |
+| `GET`    | `/chat`                 | List the user's visible chats and unread counts |
+| `POST`   | `/chat`                 | Find or create a direct chat                    |
+| `POST`   | `/chat/group`           | Create a group chat                             |
+| `PUT`    | `/chat/rename`          | Rename a group chat                             |
+| `PUT`    | `/chat/groupadd`        | Add a user to a group                           |
+| `PUT`    | `/chat/groupremove`     | Remove a user from a group                      |
+| `DELETE` | `/chat/:chatId`         | Hide a chat from the signed-in user's list      |
+| `GET`    | `/message/:chatId`      | Load messages for a chat                        |
+| `POST`   | `/message`              | Send a message                                  |
+| `PATCH`  | `/message/:chatId/read` | Mark received messages as read                  |
+| `DELETE` | `/message/:messageId`   | Delete the signed-in user's message             |
 
 ## Future improvements
 

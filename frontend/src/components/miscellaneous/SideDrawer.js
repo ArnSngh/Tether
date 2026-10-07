@@ -150,7 +150,7 @@ function SideDrawer({ isSearchOpen, setIsSearchOpen }) {
           </Button>
         </Tooltip>
         <Text fontSize="2xl" fontWeight="semibold" letterSpacing="0.02em">
-          Talk-A-Tive
+          Tether
         </Text>
         <div>
           <Menu>
