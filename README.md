@@ -77,11 +77,39 @@ The account with the email `guest@example.com` can send **three messages total**
 
 ## Screenshots and demo
 
-The screenshots below were captured from the current local application interface:
+The application screenshots below use fictional sample users and messages rendered with a temporary, local-only fixture API. No live account or chat data is included.
+
+### Sign in and registration
 
 | Login | Sign up |
 | --- | --- |
 | ![Talk-A-Tive login screen](screenshots/login.png) | ![Talk-A-Tive sign-up screen](screenshots/signup.png) |
+
+### Inbox and messaging
+
+| Chat dashboard | One-to-one conversation |
+| --- | --- |
+| ![Inbox with direct and group chats, unread counts, and navigation](screenshots/chat-dashboard.png) | ![Direct chat with message history and read receipts](screenshots/direct-chat.png) |
+
+### Group conversations
+
+| Group conversation | Create a group |
+| --- | --- |
+| ![Live group conversation with multiple members](screenshots/group-chat.png) | ![Create a group chat](screenshots/new-group.png) |
+
+| Manage group members |
+| --- |
+| ![Group settings for renaming the conversation and managing members](screenshots/group-management.png) |
+
+### Search and profile
+
+| Find people | View profile |
+| --- | --- |
+| ![Search users by name or email](screenshots/user-search.png) | ![Profile details](screenshots/profile.png) |
+
+| Edit profile | Guest message limit |
+| --- | --- |
+| ![Edit a profile photo and about information](screenshots/profile-edit.png) | ![Guest conversation after all three messages have been used](screenshots/guest-message-limit.png) |
 
 A public demo URL is not configured in this repository. Follow the steps below to run the app locally.
 
