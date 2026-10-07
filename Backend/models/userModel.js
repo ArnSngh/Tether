@@ -12,6 +12,8 @@ const userSchema = mongoose.Schema(
       default:
         "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
+    about: { type: String, trim: true, maxlength: 180, default: "" },
+    guestMessagesSent: { type: Number, min: 0, select: false },
     isAdmin: {
       type: Boolean,
       required: true,

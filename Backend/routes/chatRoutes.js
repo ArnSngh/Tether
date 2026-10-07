@@ -2,6 +2,7 @@ const express = require("express");
 const {
   accessChat,
   fetchChats,
+  hideChat,
   createGroupChat,
   removeFromGroup,
   addToGroup,
@@ -17,5 +18,6 @@ router.route("/group").post(protect, createGroupChat);
 router.route("/rename").put(protect, renameGroup);
 router.route("/groupremove").put(protect, removeFromGroup);
 router.route("/groupadd").put(protect, addToGroup);
+router.route("/:chatId").delete(protect, hideChat);
 
 module.exports = router;

@@ -4,3 +4,26 @@
   overflow-y: scroll;
   scrollbar-width: none;
 }
+
+.delete-chat-button,
+.delete-message-button {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease-in-out;
+}
+
+.chat-list-item:hover .delete-chat-button,
+.chat-list-item:focus-within .delete-chat-button,
+.chat-message-row:hover .delete-message-button,
+.chat-message-row:focus-within .delete-message-button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (hover: none) {
+  .delete-chat-button,
+  .delete-message-button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Chat = require("../models/chatModel.js");
 const User = require("../models/userModel.js");
+const Message = require("../models/messageModel.js");
 
 //@description     Create or fetch One to One Chat
 //@route           POST /api/chat/
@@ -29,6 +30,10 @@ const accessChat = asyncHandler(async (req, res) => {
   });
 
   if (isChat.length > 0) {
+    await Chat.updateOne(
+      { _id: isChat[0]._id },
+      { $pull: { hiddenBy: req.user._id } }
+    );
     res.send(isChat[0]);
   } else {
     var chatData = {
@@ -56,22 +61,60 @@ const accessChat = asyncHandler(async (req, res) => {
 //@access          Protected
 const fetchChats = asyncHandler(async (req, res) => {
   try {
-    Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
+    let chats = await Chat.find({
+      users: { $elemMatch: { $eq: req.user._id } },
+      hiddenBy: { $ne: req.user._id },
+    })
       .populate("users", "-password")
       .populate("groupAdmin", "-password")
       .populate("latestMessage")
-      .sort({ updatedAt: -1 })
-      .then(async (results) => {
-        results = await User.populate(results, {
-          path: "latestMessage.sender",
-          select: "name pic email",
-        });
-        res.status(200).send(results);
-      });
+      .sort({ updatedAt: -1 });
+
+    chats = await User.populate(chats, {
+      path: "latestMessage.sender",
+      select: "name pic email",
+    });
+
+    const unreadMessages = chats.length
+      ? await Message.aggregate([
+          {
+            $match: {
+              chat: { $in: chats.map((chat) => chat._id) },
+              sender: { $ne: req.user._id },
+              readBy: { $ne: req.user._id },
+            },
+          },
+          { $group: { _id: "$chat", count: { $sum: 1 } } },
+        ])
+      : [];
+    const unreadByChat = new Map(
+      unreadMessages.map((item) => [String(item._id), item.count])
+    );
+
+    res.status(200).send(
+      chats.map((chat) => ({
+        ...chat.toObject(),
+        unreadCount: unreadByChat.get(String(chat._id)) || 0,
+      }))
+    );
   } catch (error) {
     res.status(400);
     throw new Error(error.message);
   }
+});
+
+//@description     Hide a chat from the current user's chat list
+//@route           DELETE /api/chat/:chatId
+//@access          Protected
+const hideChat = asyncHandler(async (req, res) => {
+  const chat = await Chat.findOneAndUpdate(
+    { _id: req.params.chatId, users: req.user._id },
+    { $addToSet: { hiddenBy: req.user._id } },
+    { new: true }
+  );
+
+  if (!chat) return res.sendStatus(404);
+  res.sendStatus(204);
 });
 
 //@description     Create New Group Chat
@@ -196,6 +239,7 @@ const addToGroup = asyncHandler(async (req, res) => {
 module.exports = {
   accessChat,
   fetchChats,
+  hideChat,
   createGroupChat,
   renameGroup,
   addToGroup,
