@@ -1,4 +1,4 @@
-# Talk-A-Tive
+# Tether 2.0
 
 ## Project overview
 
